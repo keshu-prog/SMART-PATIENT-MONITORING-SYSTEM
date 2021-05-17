@@ -1,0 +1,213 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>SMART PATIENT MONITORING SYSTEM</title>
+    <link rel="icon" href="img/favicon.png">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <!-- animate CSS -->
+    <link rel="stylesheet" href="css/animate.css">
+    <!-- owl carousel CSS -->
+    <link rel="stylesheet" href="css/owl.carousel.min.css">
+    <!-- themify CSS -->
+    <link rel="stylesheet" href="css/themify-icons.css">
+    <!-- flaticon CSS -->
+    <link rel="stylesheet" href="css/flaticon.css">
+    <!-- magnific popup CSS -->
+    <link rel="stylesheet" href="css/magnific-popup.css">
+    <!-- nice select CSS -->
+    <link rel="stylesheet" href="css/nice-select.css">
+    <!-- swiper CSS -->
+    <link rel="stylesheet" href="css/slick.css">
+    <!-- style CSS -->
+    <link rel="stylesheet" href="css/style.css">
+    
+</head>
+
+<body>
+
+  <!--::header part start::-->
+    <header class="main_menu home_menu">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-12">
+                    <nav class="navbar navbar-expand-lg navbar-light">
+                        <a class="navbar-brand" href="index.html"> <img src="img/logo.png" alt="logo"> </a>
+                        <button class="navbar-toggler" type="button" data-toggle="collapse"
+                            data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                            aria-expanded="false" aria-label="Toggle navigation">
+                            <span class="navbar-toggler-icon"></span>
+                        </button>
+
+                        <div class="collapse navbar-collapse main-menu-item justify-content-end"
+                            id="navbarSupportedContent">
+                            <ul class="navbar-nav align-items-center">
+                                <li class="nav-item active">
+                                    <a class="nav-link" href="index.html"> Home</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href=""><img src="img/favicon1.png" alt="logo"> Patient Information</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="contact.html"> Contact</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </header>
+    <!-- Header part end-->
+
+    <!-- banner part start-->
+    <section class="banner_part">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-6 col-xl-6">
+                    <div class="banner_text">
+                        <div class="banner_text_iner">
+			    <h2 style="color:blue; text-align:center;"> : Patient Current Information : </h2>
+                            <div class="banner_item">
+				<table width=300% border=0 bordercolor=black align=center>
+				<tr align=center>
+					<td><img src="img/icon/hb_img.png" alt="Heart Beat Checking..."> <h6>Heart Beat</h6> 
+					<td><h3 id="bigOne2"></h3>
+					
+                                	
+				</tr>
+				<tr align=center>
+					<td><img src="img/icon/tmp_img.png" alt="Temperature Checking..."> <h6>Temperature</h6> 
+					<td> 
+					<font size="5" id="bigOne3"></font> 
+					<font size="5"><sup>o</sup>F</font>
+                                	
+				</tr>
+				
+				<tr align=center>
+					<td><img src="img/icon/oxg_img.png" alt="Oxygen level Checking..."> <h6>Oxygen Level</h6> 
+					<td> <font size="5" id="bigOne"></font>
+                                	
+				</tr>
+				<tr align=center>
+					<td><img src="img/icon/si_img.png" alt="Saline Condition..."> <h6>Saline</h6> 
+					<td> <font size="5" id="bigOne6"></font>
+                                	
+				</tr>
+				</table>
+                            </div>
+			</div>
+		     </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- banner part start-->
+
+<script src="https://www.gstatic.com/firebasejs/7.1.0/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/7.1.0/firebase-auth.js"></script>
+<script src="https://www.gstatic.com/firebasejs/7.1.0/firebase-database.js"></script>
+	<script>
+  // Your web app's Firebase configuration
+  var firebaseConfig = {
+    apiKey: "AIzaSyCmD3qyUKzjtTUHS-ffiVYF0glXuoiBDyI",
+    authDomain: "mou251199.firebaseapp.com",
+    databaseURL: "https://mou251199.firebaseio.com",
+    projectId: "mou251199",
+    storageBucket: "",
+    messagingSenderId: "953027669212",
+    appId: "1:953027669212:web:797c9015c2a986471b9819",
+    measurementId: "G-6DYZ0QF4H1"
+  };
+  // Initialize Firebase
+  firebase.initializeApp(firebaseConfig);
+  
+  var bigOne = document.getElementById('bigOne');
+  var dbRef = firebase.database().ref().child('Oxigenlevel');
+  // var B1 = (parseInt(bigOne) <= 70)? parseInt(bigOne)-10:parseInt(bigOne)+10
+  //bigOne = B1  
+   dbRef.on('value',snap=>bigOne.innerText = snap.val());
+  
+  var bigOne2 = document.getElementById('bigOne2');
+  var dbRef2 = firebase.database().ref().child('BPM');
+  dbRef2.on('value',snap=>bigOne2.innerText = snap.val());
+
+  var bigOne3 = document.getElementById('bigOne3');
+  var dbRef3 = firebase.database().ref().child('Temparature');
+  dbRef3.on('value',snap=>bigOne3.innerText = snap.val());
+
+  var bigOne4 = document.getElementById('bigOne4');
+  var dbRef4 = firebase.database().ref().child('PressurHigh');
+  dbRef4.on('value',snap=>bigOne4.innerText = snap.val());
+
+ var bigOne5 = document.getElementById('bigOne5');
+  var dbRef5 = firebase.database().ref().child('PressurLow');
+  dbRef5.on('value',snap=>bigOne5.innerText = snap.val());
+
+var bigOne6 = document.getElementById('bigOne6');
+  var dbRef6 = firebase.database().ref().child('Saline');
+  dbRef6.on('value',snap=>bigOne6.innerText = snap.val());
+ 
+	function setImageStatus() { 
+			if (divVal1 <= 10) {
+				document.getElementById('div1').style.visibility = 'visible';	//playAudio();
+			}else{
+				document.getElementById('div1').style.visibility = 'hidden';	
+			}
+
+			if (divVal2 <= 10 ) { 
+				document.getElementById('div2').style.visibility = 'visible'; 	//playAudio();
+			}else{
+				document.getElementById('div2').style.visibility = 'hidden';	
+			}
+
+			if (divVal3 <= 70) { 
+				document.getElementById('div3').style.visibility = 'visible'; 	//playAudio();
+			}else{
+				document.getElementById('div3').style.visibility = 'hidden'; 	
+			}
+
+			if (divVal4 <= 10) { 
+				document.getElementById('div4').style.visibility = 'visible';   //playAudio();	
+			}else{
+				document.getElementById('div4').style.visibility = 'hidden'; 	
+			}
+
+			if (divVal5 <= 10) { 
+				document.getElementById('div5').style.visibility = 'visible'; 	//playAudio();	
+			}else{
+				document.getElementById('div5').style.visibility = 'hidden';	 	
+			}
+			count++;
+			//setTimeout(setImageStatus(), 1);
+		}
+</script>
+
+
+    <!-- footer part start-->
+    <footer class="footer-area">
+        <div class="copyright_part">
+            <div class="container">
+                <div class="row align-items-center">
+                    <p class="footer-text m-0 col-lg-8 col-md-12"><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+K. G. Engineering Institute, Bishnupur, Bankura, West Bengal - 722122 <br>All rights reserved Copyright &copy;<script>document.write(new Date().getFullYear());</script> | This template is made with <i class="ti-heart" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
+<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></p>
+                    <div class="col-lg-4 col-md-12 text-center text-lg-right footer-social">
+                        <a href="#"><i class="ti-facebook"></i></a>
+                        <a href="#"> <i class="ti-twitter"></i> </a>
+                        <a href="#"><i class="ti-instagram"></i></a>
+                        <a href="#"><i class="ti-skype"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+  
+</body>
+
+</html>

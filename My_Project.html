@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Health monitoring</title>
+	<!-- The core Firebase JS SDK is always required and must be listed first -->
+</head>
+<body bgcolor="sky blue">
+
+<i><h1>Current Patient Condition....</h1></i>
+
+<u><h3>Oxigen Level:---</h3></u>
+<h3 id="bigOne"></h3>
+
+<u><h3>Heart Beat Level:---</h3></u>
+<h3 id="bigOne2"></h3>
+
+<u><h3>Temparature Level:---</h3></u>
+<h3 id="bigOne3"></h3>
+
+<u><h3>Blood Pressur High:---</h3></u>
+<h3 id="bigOne4"></h3>
+
+<u><h3>Blood Pressur Low:---</h3></u>
+<h3 id="bigOne5"></h3>
+
+<h3>Saline Level is ok....!</h3>
+
+<script src="https://www.gstatic.com/firebasejs/7.1.0/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/7.1.0/firebase-auth.js"></script>
+<script src="https://www.gstatic.com/firebasejs/7.1.0/firebase-database.js"></script>
+<script>
+  // Your web app's Firebase configuration
+  var firebaseConfig = {
+    apiKey: "AIzaSyCmD3qyUKzjtTUHS-ffiVYF0glXuoiBDyI",
+    authDomain: "mou251199.firebaseapp.com",
+    databaseURL: "https://mou251199.firebaseio.com",
+    projectId: "mou251199",
+    storageBucket: "",
+    messagingSenderId: "953027669212",
+    appId: "1:953027669212:web:797c9015c2a986471b9819",
+    measurementId: "G-6DYZ0QF4H1"
+  };
+  // Initialize Firebase
+  firebase.initializeApp(firebaseConfig);
+  
+  
+
+ 
+  var bigOne = document.getElementById('bigOne');
+  var dbRef = firebase.database().ref().child('Oxigenlevel');
+  dbRef.on('value',snap=>bigOne.innerText = snap.val());
+
+  var bigOne2 = document.getElementById('bigOne2');
+  var dbRef2 = firebase.database().ref().child('BPM');
+  dbRef2.on('value',snap=>bigOne2.innerText = snap.val());
+
+  var bigOne3 = document.getElementById('bigOne3');
+  var dbRef3 = firebase.database().ref().child('Temparature');
+  dbRef3.on('value',snap=>bigOne3.innerText = snap.val());
+
+  var bigOne4 = document.getElementById('bigOne4');
+  var dbRef4 = firebase.database().ref().child('PressurHigh');
+  dbRef4.on('value',snap=>bigOne4.innerText = snap.val());
+
+ var bigOne5 = document.getElementById('bigOne5');
+  var dbRef5 = firebase.database().ref().child('PressurLow');
+  dbRef5.on('value',snap=>bigOne5.innerText = snap.val());
+ 
+</script>
+		
+	
+	
+</body>
+</html>
